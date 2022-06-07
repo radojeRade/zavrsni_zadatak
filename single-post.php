@@ -1,13 +1,12 @@
 <?php 
     include_once('db.php');
+    
     $id = $_GET['post_id'];
     
     
-    $sql1 ="SELECT * FROM posts WHERE id = '$id'";
+    $sql1 ="SELECT p.title, p.id, p.created_at, p.body, a.first_name, a.last_name FROM posts AS p 
+            INNER JOIN author AS a ON a.id = p.author_id WHERE p.id = '$id'";
     $post = fetch($sql1, $connection); 
-
-    $sql = "SELECT * FROM comments WHERE post_id = '$id'";
-    $comments = fetch($sql, $connection, true);
     
     ?>
 
@@ -45,13 +44,7 @@
         <p class="blog-post-meta"><?php echo($post['created_at']); ?> <a href="#"><?php echo($post['author']); ?></a></p>
         <p> <?php echo($post['body']) ?></p>
 
-            <ul>
-                <?php foreach ($comments as $comment) {
-                    
-                    echo "<hr><li>".$comment['author']."</br>", " ". $comment['text']."</li>";
-                } ?>
-            </ul>
-        
+        <?php include ('comments.php');?>
     </div>
 
         

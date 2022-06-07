@@ -1,24 +1,28 @@
 <?php 
     include_once('db.php');
-    
+    //array_combine(array_keys($array), array_column($array, 'column'));
     $required="";
     
     if (isset($_POST['submit'])){
         $body = $_POST['body'];
         $title = $_POST['title'];
-        $author = $_POST['author'];
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $gender = $_POST['gender'];
        
-        if(empty($body) || empty($title) || empty($author)){
+        if(empty($body) || empty($title) || empty($firstName) || empty($lastName) || empty($gender)){
             $required = "Nisu svi podaci uneti!";
         }else {
             $currentDate = date("Y-m-d");
             $sql = "INSERT INTO posts (title, body, author, created_at)
-                    VALUES ('$title', '$body', '$author', '$currentDate')";
+                    VALUES ('$title', '$body', 1, '$currentDate')";
             insertIntoDatabase($sql, $connection);
             header("Location: ./home.php");
             echo ("Upisi u bazu");
         }
     }
+    $sql = "SELECT * FROM author";
+    $authors = fetch($sql, $connection, true);
     
     ?>
 
@@ -60,7 +64,7 @@
                 </li>
                 <li>
                     <label for="author">Author</label>
-                    <input type="text" name="author" id="author" placeholder="Enter name">
+                    <input type="author" id="author" name="author" placeholder="Enter author">
                 </li>
                 <li>
                     <label for="body">Content</label>
