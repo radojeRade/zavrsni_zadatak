@@ -8,6 +8,12 @@ body {
     font-family: Georgia, "Times New Roman", Times, serif;
     color: #555;
 }
+.male{
+    color: hsl(226, 86%, 43%);
+}
+.female{
+    color: hsl(10, 86%, 43%);
+}
 form {
     /* Center the form on the page */
     margin: 0 auto;
@@ -42,7 +48,7 @@ form {
     font: 1em sans-serif;
   
     /* Uniform text field size */
-    width: 300px;
+    width: 120px;
     box-sizing: border-box;
   
     /* Match form field borders */
