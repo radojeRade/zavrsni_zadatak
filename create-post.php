@@ -1,15 +1,13 @@
 <?php 
     include_once('db.php');
-   
-  
     
+    $required = "";
+
     if (isset($_POST['submit'])){
         $body = $_POST['body'];
         $title = $_POST['title'];
         $id = $_POST['author'];
         
-        
-       
         if(empty($body) || empty($title) || empty($id)){
             $required = "Nisu svi podaci uneti!";
         }else {
@@ -57,15 +55,13 @@
                 
     <div class="blog-post">
         <form class="form" action="./create-post.php" method="POST" id="postsForma">
-                    <label>Select author</label>
-                    <select class="form-control" name="author" placeholder="Select Author" >
+                    
+            <label for="author">Select author</label>
+                    <select class="form" name="author" placeholder="Select Author" >
                         <?php foreach($authors as $author) { ?> 
                             <option  class=<?php echo $author['gender'] ?> value="<?php echo $author['id'] ?>">
-                                    <?php
-                                    echo ($author['first_name']) . ' ' . ($author['last_name']);
-                                    ?>
+                                    <?php echo ($author['first_name']. " " .$author['last_name']);?>
                             </option>
-                       
                         <?php } ?>
                     </select>
             <ul >
@@ -75,15 +71,14 @@
                 </li>
                 <li>
                     <label for="body">Content</label>
-                    <textarea name="body" placeholder="Enter body" rows="10" id="bodyPosts"></textarea><br>
+                    <textarea name="body" placeholder="Enter body" rows="30" id="bodyPosts"></textarea><br>
                 </li>
                 <li>
                     <button type="submit" name="submit">Submit</button>
                 </li>
                 <?php echo $required; ?>
             </ul>
-        </form>
-        
+        </form>    
     </div>
     </div><!-- /.row -->
     

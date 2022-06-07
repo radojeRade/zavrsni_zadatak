@@ -1,13 +1,13 @@
 <?php 
     include_once('db.php');
     
-    $id = $_GET['post_id'];
-    
-    
-    $sql1 ="SELECT p.title, p.id, p.created_at, p.body, a.first_name, a.last_name FROM posts AS p 
-            INNER JOIN author AS a ON a.id = p.author_id WHERE p.id = '$id'";
-    $post = fetch($sql1, $connection); 
-    
+    if (isset($_GET['post_id'])){
+        
+        $id = $_GET['post_id'];
+        $sql1 ="SELECT p.title, p.id, p.created_at, p.body, a.first_name, a.last_name, a.gender FROM posts AS p 
+                INNER JOIN author AS a ON a.id = p.author_id WHERE p.id = '$id'";
+        $post = fetch($sql1, $connection); 
+    }
     ?>
 
 <!doctype html>
@@ -41,13 +41,11 @@
                 
     <div class="blog-post">
         <h2 class="blog-post-title"><?php echo($post['title']); ?></h2>
-        <p class="blog-post-meta"><?php echo($post['created_at']); ?> <a href="#"><?php echo($post['author']); ?></a></p>
+        <p class="blog-post-meta"><?php echo($post['created_at']); ?> <a href="#"class= <?php echo ($post['gender'])?>><?php echo($post['first_name']." ".$post['last_name']); ?></a></p>
         <p> <?php echo($post['body']) ?></p>
 
         <?php include ('comments.php');?>
     </div>
-
-        
 
     </div><!-- /.row -->
     <?php include('sidebar.php')?>

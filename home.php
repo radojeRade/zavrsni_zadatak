@@ -32,7 +32,11 @@
     </div><!-- /.row -->
 
 </main><!-- /.container -->
-
+<script>
+    function visitPage(){
+        window.location='create-post.php';
+    }
+</script>
 <?php include('footer.php')?>    
 </body>
 </html>

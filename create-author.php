@@ -9,7 +9,6 @@
         $lastName = $_POST['lastName'];
         $gender = $_POST['gender'];
         
-       
         if(empty($firstName) || empty($lastName) || empty($gender)){
             $required = "Nisu svi podaci uneti!";
         }else {
@@ -55,26 +54,19 @@
     
         <form class="form1" action="./create-author.php" method="POST" id="postsForma">
             
-            <!-- <p style="color:red">* Required field</p> -->
-            
             First name: <input type="text" name="firstName" id=”fname” placeholder="your name"> 
                   <label for="fname" style="color:red"><?php echo $required; ?></label><br><br>   
             
             Last name: <input type="text" name="lastName" id=”lname” placeholder="your last name" >
                     <label for="lname"style="color:red"><?php echo $required; ?></label><br><br>
-            
                     <input type="radio" name="gender" value="female">Z
                     <input type="radio" name="gender" value="male">M
                     <label for="gender" style="color:red"><?php echo $required; ?></label><br><br>
-                 
                     <input type="submit" name="submit" value="Submit"> 
         
         </form>
         
     </div>
-
-        
-
     </div><!-- /.row -->
     <?php include('sidebar.php')?>
 
