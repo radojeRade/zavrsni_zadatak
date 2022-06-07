@@ -19,8 +19,7 @@ try {
 }
 
 
-function fetch($sql, $connection, $isFetchAll = false)
-{
+function fetch($sql, $connection, $isFetchAll = false){
     $statement = $connection->prepare($sql);
     $statement->execute();
     $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -29,5 +28,11 @@ function fetch($sql, $connection, $isFetchAll = false)
     }
 
     return $statement->fetch();
+}
+
+function insertIntoDatabase($sql, $connection) {
+    $statement = $connection->prepare($sql);
+    $statement->execute();
+    return;
 }
 ?>
