@@ -7,9 +7,9 @@
     $posts= fetch($sql, $connection, true);
     
 
-    if(isset($_POST['submit'])){
+    if(isset($_GET['author_id'])){
         
-        $id = $_POST['author'];
+        $id = $_GET['author_id'];
         $sql1 = "SELECT p.title, p.id, p.created_at, p.body, a.first_name, a.last_name FROM posts AS p 
                 INNER JOIN author AS a ON a.id = p.author_id WHERE p.author_id = '$id'";
         $posts = fetch($sql1, $connection, true);
@@ -24,18 +24,16 @@
 
 <div class="col-sm-8 blog-main">
 
-        <form class="form" action="./home.php" method="POST" id="postsForma">
+        <form class="form">
             <label for="author">Select author</label>
-                <select class="form" name="author" >
+                <select class="form" name="author" onchange="location = this.value;" >
                     <?php foreach($authors as $author) { ?>
                         <option value="none" selected disabled hidden>All Authors</option>
-                        <option  class=<?php echo $author['gender'] ?> value="<?php echo $author['id'] ?>">
+                        <option  class=<?php echo $author['gender'] ?> value="home.php?author_id=<?php echo $author['id'] ?>">
                             <?php echo ($author['first_name']. " " .$author['last_name']);?>
                         </option>
                     <?php } ?>
                 </select>
-                <button type="submit" name="submit">Submit</button>
-               
         </form><br>
         
         <?php
