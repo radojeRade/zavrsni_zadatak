@@ -7,7 +7,6 @@
             
     <ul>
         <?php foreach ($comments as $comment) {
-                    
             echo "<hr><li>".$comment['first_name']. " " . $comment['last_name']."</br>", " ". $comment['text']."<hr></li>";
         } ?>  
     </ul>

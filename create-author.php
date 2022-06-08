@@ -3,7 +3,6 @@
     
     $required="";
     
-    
     if (isset($_POST['submit'])){
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
@@ -12,7 +11,6 @@
         if(empty($firstName) || empty($lastName) || empty($gender)){
             $required = "Nisu svi podaci uneti!";
         }else {
-            
             $sql = "INSERT INTO author (first_name, last_name, gender)
                     VALUES ('$firstName', '$lastName', '$gender')";
             insertIntoDatabase($sql, $connection);
@@ -43,25 +41,26 @@
 <body>
     <?php include('header.php')?>
 
-
 <main role="main" class="container">
 
     <div class="row">
 
-        <div class="col-sm-8 blog-main">
+    <div class="col-sm-8 blog-main">
                 
     <div class="blog-post">
     
         <form class="form1" action="./create-author.php" method="POST" id="postsForma">
             
             First name: <input type="text" name="firstName" id=”fname” placeholder="your name"> 
-                  <label for="fname" style="color:red"><?php echo $required; ?></label><br><br>   
+                    <label for="fname" style="color:red"><?php echo $required; ?></label><br><br>   
             
             Last name: <input type="text" name="lastName" id=”lname” placeholder="your last name" >
                     <label for="lname"style="color:red"><?php echo $required; ?></label><br><br>
+                    
                     <input type="radio" name="gender" value="female">Z
                     <input type="radio" name="gender" value="male">M
                     <label for="gender" style="color:red"><?php echo $required; ?></label><br><br>
+                    
                     <input type="submit" name="submit" value="Submit"> 
         
         </form>
@@ -72,7 +71,12 @@
 
 </main><!-- /.container -->
 
-<?php include('footer.php')?>    
+<?php include('footer.php')?> 
+<script>
+    function goToCreatePost(){
+        window.location='create-post.php';
+    }
+</script>   
 </body>
 </html>
 

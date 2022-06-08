@@ -9,7 +9,7 @@
         $id = $_POST['author'];
         
         if(empty($body) || empty($title) || empty($id)){
-            $required = "Nisu svi podaci uneti!";
+            $required = "Nisu svi podaci uneti. Ponovite unos podataka!";
         }else {
             $currentDate = date("Y-m-d");
             $sql = "INSERT INTO posts (title, body, author_id, created_at)
@@ -21,7 +21,6 @@
     }
     $sql = "SELECT * FROM author";
     $authors = fetch($sql, $connection, true);
-    
     ?>
 
 <!doctype html>
@@ -57,13 +56,13 @@
         <form class="form" action="./create-post.php" method="POST" id="postsForma">
                     
             <label for="author">Select author</label>
-                    <select class="form" name="author" placeholder="Select Author" >
-                        <?php foreach($authors as $author) { ?> 
-                            <option  class=<?php echo $author['gender'] ?> value="<?php echo $author['id'] ?>">
-                                    <?php echo ($author['first_name']. " " .$author['last_name']);?>
-                            </option>
-                        <?php } ?>
-                    </select>
+                <select class="form" name="author" >
+                    <?php foreach($authors as $author) { ?> 
+                        <option  class=<?php echo $author['gender'] ?> value="<?php echo $author['id'] ?>">
+                            <?php echo ($author['first_name']. " " .$author['last_name']);?>
+                        </option>
+                    <?php } ?>
+                </select>
             <ul >
                 <li>
                     <label for="title">Title</label>
@@ -86,6 +85,11 @@
 
 </main><!-- /.container -->
 
-<?php include('footer.php')?>    
+<?php include('footer.php')?> 
+<script>
+    function goToCreatePost(){
+        window.location='create-post.php';
+    }
+</script>    
 </body>
 </html>

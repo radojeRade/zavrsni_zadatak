@@ -18,8 +18,8 @@
 </head>
 
 <body>
+    
     <?php include('header.php')?>
-
 
 <main role="main" class="container">
 
@@ -33,7 +33,7 @@
 
 </main><!-- /.container -->
 <script>
-    function visitPage(){
+    function goToCreatePost(){
         window.location='create-post.php';
     }
 </script>

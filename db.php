@@ -18,7 +18,6 @@ try {
     echo $e->getMessage();
 }
 
-
 function fetch($sql, $connection, $isFetchAll = false){
     $statement = $connection->prepare($sql);
     $statement->execute();

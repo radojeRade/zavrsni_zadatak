@@ -52,7 +52,12 @@
 
 </main><!-- /.container -->
 
-<?php include('footer.php')?>    
+<?php include('footer.php')?> 
+<script>
+    function goToCreatePost(){
+        window.location='create-post.php';
+    }
+</script>    
 </body>
 </html>
 
