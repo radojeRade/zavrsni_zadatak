@@ -2,7 +2,7 @@
     include_once('db.php');
 
     $sql = "SELECT p.title, p.id, p.created_at, p.body, a.first_name, a.last_name FROM posts AS p 
-            INNER JOIN author AS a ON a.id = p.author_id ORDER BY created_at DESC";
+            INNER JOIN author AS a ON a.id = p.author_id ORDER BY p.created_at DESC";
 
     $posts= fetch($sql, $connection, true);
     
@@ -11,7 +11,7 @@
         
         $id = $_GET['author_id'];
         $sql1 = "SELECT p.title, p.id, p.created_at, p.body, a.first_name, a.last_name FROM posts AS p 
-                INNER JOIN author AS a ON a.id = p.author_id WHERE p.author_id = '$id'";
+                INNER JOIN author AS a ON a.id = p.author_id WHERE p.author_id = '$id' ORDER BY p.created_at DESC";
         $posts = fetch($sql1, $connection, true);
         
     }
